@@ -82,7 +82,7 @@
             "resources": [
                 {
                     "name": "[concat('default/', variables('teamsContainer'))]",
-                    "type": "containers",
+                    "type": "blobServices/containers",
                     "apiVersion": "2018-07-01",
                     "dependsOn": [
                         "[variables('storageAccountName')]"
@@ -90,7 +90,7 @@
                 },
                 {
                     "name": "[concat('default/', variables('usersContainer'))]",
-                    "type": "containers",
+                    "type": "blobServices/containers",
                     "apiVersion": "2018-07-01",
                     "dependsOn": [
                         "[variables('storageAccountName')]"
