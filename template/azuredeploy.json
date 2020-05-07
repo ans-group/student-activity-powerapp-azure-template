@@ -4,7 +4,7 @@
     "parameters": {
         "prefix": {
             "type": "string",
-            "defaultValue": "student-activity",
+            "defaultValue": "se-app",
             "metadata": {
                 "description": "Used to prefix all deployed services"
             }
