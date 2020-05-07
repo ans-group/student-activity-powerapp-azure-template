@@ -37,10 +37,6 @@
         "functionAppName": "[concat(parameters('prefix'), '-func')]",
         "hostingPlanName": "[concat(parameters('prefix'), '-asp')]",
         "location": "[resourceGroup().location]",
-        "skuTier": "Standard",
-        "skuName": "S1",
-        "workerSize": "0",
-        "hostingEnvironment": "",
         "repoUrl": "https://github.com/ans-group/student-activity-powerapp-azure-function.git",
         "branch": "master"
     },
@@ -114,7 +110,6 @@
                 "hostingEnvironment": "",
                 "clientAffinityEnabled": false,      
                 "siteConfig": {
-                    "alwaysOn": true,
                     "appSettings": [
                         {
                             "name": "AzureWebJobsDashboard",
@@ -165,7 +160,7 @@
             },
             "resources": [
                 {
-                    "apiVersion": "2015-08-01",
+                    "apiVersion": "2018-11-01",
                     "name": "web",
                     "type": "sourcecontrols",
                     "dependsOn": [

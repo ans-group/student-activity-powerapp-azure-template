@@ -37,15 +37,23 @@ To create the App Registration,
 10. Click on the **Grant admin consent for Default Directory** button.
 
 ### Deploy Azure Template
+
 The Azure template will deploy an Azure Function App and an Azure Data Lake Gen2 storage account.
 
-To deploy the Azure template clicl on the Deploy button below, this will take you to the Azure Portal to deploy the template.
+1. To deploy the Azure template click on the Deploy button below, this will take you to the Azure Portal to deploy the template.
 
-[![Deploy to Azure](./images/azure_deploy.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fans-group%2Fstudent-activity-powerapp-azure-template%2Fmaster%2Ftemplate%2Fazuredeploy.json)
+    [![Deploy to Azure](./images/azure_deploy.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fans-group%2Fstudent-activity-powerapp-azure-template%2Fmaster%2Ftemplate%2Fazuredeploy.json)
 
 
+2. Complete the information template form.
+    * **Resource Group:** Create a new resource group to hows the application.
+    * **Prefix:** Enter a prefix that will be prepended to the resources names.
+    * **Tenant Id:** Enter the Tenant Id that was recorded earlier.
+    * **Client Id:** Enter the Client Id that was recorded earlier.
+    * **Client Secret Id:** Enter the Client Secret that was recorded earlier.
 
-Please follow the steps below to complete the process.
+3. Check **I agree to the terms and conditions stated above**
 
-1. 
+4. Click on the **Purchase** button.
+
 
