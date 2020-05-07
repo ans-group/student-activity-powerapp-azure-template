@@ -1,0 +1,185 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "prefix": {
+            "type": "string",
+            "defaultValue": "student-activity",
+            "metadata": {
+                "description": "Used to prefix all deployed services"
+            }
+        },
+        "tenantId": {
+            "type": "string",
+            "metadata": {
+                "description": "Tenant ID for FunctionApp App Registration"
+            }
+        },
+        "clientId": {
+            "type": "string",
+            "metadata": {
+                "description": "Client ID for FunctionApp App Registration"
+            }
+        },
+        "clientSecret": {
+            "type": "string",
+            "metadata": {
+                "description": "Client Secret for FunctionApp App Registration"
+            }
+        }
+    },
+    "variables": {
+        "storageSafePrefix": "[toLower(replace(parameters('prefix'),'-', ''))]",
+        "storageAccountName": "[concat(variables('storageSafePrefix'), uniquestring(resourceGroup().id),'appsa')]",       
+        "storageaccountId": "[concat(resourceGroup().id,'/providers/','Microsoft.Storage/storageAccounts/', variables('storageAccountName'))]",
+        "storageAccountDLName": "[concat(variables('storageSafePrefix'), uniquestring(resourceGroup().id),'lakesa')]", 
+        "storageaccountDLId": "[concat(resourceGroup().id,'/providers/','Microsoft.Storage/storageAccounts/', variables('storageAccountDLName'))]",
+        "storageAccountType": "Standard_LRS",
+        "functionAppName": "[concat(parameters('prefix'), '-func')]",
+        "hostingPlanName": "[concat(parameters('prefix'), '-asp')]",
+        "location": "[resourceGroup().location]",
+        "skuTier": "Standard",
+        "skuName": "S1",
+        "workerSize": "0",
+        "hostingEnvironment": "",
+        "repoUrl": "https://github.com/ans-group/student-activity-powerapp-azure-function.git",
+        "branch": "master"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2019-06-01",
+            "location": "[resourceGroup().location]",
+            "name": "[variables('storageAccountDLName')]",
+            "kind": "StorageV2",
+            "sku": {
+                "name": "[variables('storageAccountType')]"
+            },
+            "properties": {
+                "encryption": {
+                    "keySource": "Microsoft.Storage",
+                    "services": {
+                        "blob": {
+                            "enabled": true
+                        },
+                        "file": {
+                            "enabled": true
+                        }
+                    }
+                },
+                "isHnsEnabled": true,
+                "supportsHttpsTrafficOnly": true
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2019-06-01",
+            "name": "[variables('storageAccountName')]",
+            "location": "[resourceGroup().location]",
+            "kind": "StorageV2",  
+            "sku": {
+                "name": "[variables('storageAccountType')]"
+            },
+            "properties": {
+            }
+        },
+        {
+            "apiVersion": "2016-09-01",
+            "name": "[variables('hostingPlanName')]",
+            "type": "Microsoft.Web/serverfarms",
+            "location": "[variables('location')]",
+            "kind": "app",
+            "properties": {
+                "name": "[variables('hostingPlanName')]",
+                "workerSizeId": "[variables('workerSize')]",
+                "reserved": false,
+                "numberOfWorkers": "1",
+                "hostingEnvironment": "[variables('hostingEnvironment')]"
+            },
+            "sku": {
+                "Tier": "[variables('skuTier')]",
+                "Name": "[variables('skuName')]"
+            }
+        },
+        {
+            "apiVersion": "2015-08-01",
+            "type": "Microsoft.Web/sites",
+            "name": "[variables('functionAppName')]",
+            "location": "[resourceGroup().location]",
+            "kind": "functionapp",            
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
+            ],
+            "properties": {
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
+                "hostingEnvironment": "",
+                "clientAffinityEnabled": false,      
+                "siteConfig": {
+                    "alwaysOn": true,
+                    "appSettings": [
+                        {
+                            "name": "AzureWebJobsDashboard",
+                            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';AccountKey=', listKeys(variables('storageaccountId'),'2016-12-01').keys[0].value,';EndpointSuffix=core.windows.net')]"
+                        },
+                        {
+                            "name": "AzureWebJobsStorage",
+                            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';AccountKey=', listKeys(variables('storageaccountId'),'2016-12-01').keys[0].value,';EndpointSuffix=core.windows.net')]"
+                        },
+                        {
+                            "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
+                            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';AccountKey=', listKeys(variables('storageaccountId'),'2016-12-01').keys[0].value,';EndpointSuffix=core.windows.net')]"
+                        },
+                        {
+                            "name": "AZURE_STORAGE_CONNECTION_STRING",
+                            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountDLName'), ';AccountKey=', listKeys(variables('storageaccountDLId'),'2016-12-01').keys[0].value,';EndpointSuffix=core.windows.net')]"
+                        },
+                                                {
+                            "name": "WEBSITE_CONTENTSHARE",
+                            "value": "[variables('storageAccountName')]"
+                        },
+                        {
+                            "name": "FUNCTIONS_EXTENSION_VERSION",
+                            "value": "~2"
+                        },
+                        {
+                            "name": "FUNCTIONS_WORKER_RUNTIME",
+                            "value": "node"
+                        },
+                        {
+                            "name": "WEBSITE_NODE_DEFAULT_VERSION",
+                            "value": "~10"
+                        },
+                        {
+                            "name": "TENANT_ID",
+                            "value": "[parameters('tenantId')]"
+                        },
+                        {
+                            "name": "CLIENT_ID",
+                            "value": "[parameters('clientId')]"
+                        },
+                        {
+                            "name": "CLIENT_SECRET",
+                            "value": "[parameters('clientSecret')]"
+                        }
+                    ]
+                }
+            },
+            "resources": [
+                {
+                    "apiVersion": "2015-08-01",
+                    "name": "web",
+                    "type": "sourcecontrols",
+                    "dependsOn": [
+                      "[resourceId('Microsoft.Web/Sites', variables('functionAppName'))]"
+                    ],
+                    "properties": {
+                      "RepoUrl": "[variables('repoUrl')]",
+                      "branch": "[variables('branch')]",
+                      "IsManualIntegration": true
+                    }
+                }
+            ]         
+        }
+    ]
+}
