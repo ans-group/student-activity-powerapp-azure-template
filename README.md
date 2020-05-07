@@ -41,7 +41,7 @@ The Azure template will deploy an Azure Function App and an Azure Data Lake Gen2
 
 To deploy the Azure template clicl on the Deploy button below, this will take you to the Azure Portal to deploy the template.
 
-[![Deploy to Azure](../images/azure_deploy.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fans-group%2Fstudent-activity-powerapp-azure-function%2Fmaster%2Ftemplate%2Fazuredeploy.json)
+[![Deploy to Azure](./images/azure_deploy.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fans-group%2Fstudent-activity-powerapp-azure-function%2Fmaster%2Ftemplate%2Fazuredeploy.json)
 
 
 
