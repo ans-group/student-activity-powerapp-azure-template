@@ -38,7 +38,9 @@
         "hostingPlanName": "[concat(parameters('prefix'), '-asp')]",
         "location": "[resourceGroup().location]",
         "repoUrl": "https://github.com/ans-group/student-activity-powerapp-azure-function.git",
-        "branch": "master"
+        "branch": "master",
+        "teamsContainer": "teams-json",
+        "usersContainer": "user-json"
     },
     "resources": [
         {
@@ -76,7 +78,26 @@
                 "name": "[variables('storageAccountType')]"
             },
             "properties": {
-            }
+            },
+            "resources": [
+                {
+                    "name": "[concat('default/', variables('teamsContainer'))]",
+                    "type": "containers",
+                    "apiVersion": "2018-07-01",
+                    "dependsOn": [
+                        "[variables('storageAccountName')]"
+                    ]
+                },
+                {
+                    "name": "[concat('default/', variables('usersContainer'))]",
+                    "type": "containers",
+                    "apiVersion": "2018-07-01",
+                    "dependsOn": [
+                        "[variables('storageAccountName')]"
+                    ]
+                }
+            ]
+            
         },
         {
             "apiVersion": "2016-09-01",
