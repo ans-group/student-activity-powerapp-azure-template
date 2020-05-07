@@ -22,17 +22,16 @@
             }
         },
         "clientSecret": {
-            "type": "string",
+            "type": "securestring",
             "metadata": {
                 "description": "Client Secret for FunctionApp App Registration"
             }
         }
     },
     "variables": {
-        "storageSafePrefix": "[toLower(replace(parameters('prefix'),'-', ''))]",
-        "storageAccountName": "[concat(variables('storageSafePrefix'), uniquestring(resourceGroup().id),'appsa')]",       
+        "storageAccountName": "[concat(uniquestring(resourceGroup().id),'funcsa')]",
         "storageaccountId": "[concat(resourceGroup().id,'/providers/','Microsoft.Storage/storageAccounts/', variables('storageAccountName'))]",
-        "storageAccountDLName": "[concat(variables('storageSafePrefix'), uniquestring(resourceGroup().id),'lakesa')]", 
+        "storageAccountDLName": "[concat(uniquestring(resourceGroup().id),'lakesa')]",
         "storageaccountDLId": "[concat(resourceGroup().id,'/providers/','Microsoft.Storage/storageAccounts/', variables('storageAccountDLName'))]",
         "storageAccountType": "Standard_LRS",
         "functionAppName": "[concat(parameters('prefix'), '-func')]",
@@ -88,17 +87,16 @@
             "name": "[variables('hostingPlanName')]",
             "type": "Microsoft.Web/serverfarms",
             "location": "[variables('location')]",
-            "kind": "app",
             "properties": {
                 "name": "[variables('hostingPlanName')]",
-                "workerSizeId": "[variables('workerSize')]",
-                "reserved": false,
-                "numberOfWorkers": "1",
-                "hostingEnvironment": "[variables('hostingEnvironment')]"
+                "computeMode":"Dynamic"
             },
             "sku": {
-                "Tier": "[variables('skuTier')]",
-                "Name": "[variables('skuName')]"
+                "name":"Y1",
+                "tier":"Dynamic",
+                "size":"Y1",
+                "family":"Y",
+                "capacity":0
             }
         },
         {
