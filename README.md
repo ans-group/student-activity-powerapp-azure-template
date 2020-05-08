@@ -57,3 +57,10 @@ The Azure template will deploy an Azure Function App and an Azure Data Lake Gen2
 4. Click on the **Purchase** button.
 
 
+### Deploy Power App Portal
+
+The solution requires a PowerApps portal to be deployed this must be completed before, deployong the PowerApp solution.
+
+
+
+### Deploy Power App Solution

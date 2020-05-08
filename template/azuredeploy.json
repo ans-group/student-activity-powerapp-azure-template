@@ -66,18 +66,6 @@
                 },
                 "isHnsEnabled": true,
                 "supportsHttpsTrafficOnly": true
-            }
-        },
-        {
-            "type": "Microsoft.Storage/storageAccounts",
-            "apiVersion": "2019-06-01",
-            "name": "[variables('storageAccountName')]",
-            "location": "[resourceGroup().location]",
-            "kind": "StorageV2",  
-            "sku": {
-                "name": "[variables('storageAccountType')]"
-            },
-            "properties": {
             },
             "resources": [
                 {
@@ -97,7 +85,18 @@
                     ]
                 }
             ]
-            
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2019-06-01",
+            "name": "[variables('storageAccountName')]",
+            "location": "[resourceGroup().location]",
+            "kind": "StorageV2",  
+            "sku": {
+                "name": "[variables('storageAccountType')]"
+            },
+            "properties": {
+            }    
         },
         {
             "apiVersion": "2016-09-01",
