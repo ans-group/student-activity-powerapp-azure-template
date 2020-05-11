@@ -143,7 +143,7 @@ The solution requires a PowerApps portal, The base PowerApps Portal must be inst
 4. Complete the required fields
 
     * **Name:** Student Engagement Portal
-    * **Address:**  Enter a meaningfull name
+    * **Address:**  Enter a meaningfull name and record the full URL for later.
     * **Language:** English  
 
     Wait for the new Student Engagement Portal and the Portal Management apps to deploy, this will take around 15 minutes to complete.  
@@ -160,7 +160,106 @@ The PowerApp solution
 
 4. On the left-hand menu click on **Solutions**, then from the top menu click on **Import**, a new window will open.
 
-5. Click on **Choose File** and select the file you downloaded in step 1, then click **Next**
+5. Click on **Choose File** and select the file you downloaded in step 1, then click **Next** button.
 
-6. 
+6. Click **Next** button again, then click **Import** button and wait for solution customisations to import.
 
+7. If you recieve a warning that relates to the below two items, it can safley be ignored.
+    * Inbound Bot Webhook
+    * Send email on new request
+
+8. Click on the **Close** button, to complete, and **StudentActivity** should now appear in the list of solutions
+
+### Update PowerAutomate Flow connections
+
+To update the PowerAutomate Flow connections.
+
+1. Open https://make.powerapps.com
+
+2. From the top menu select the environment that the solution will be deployed into, this is the one we created earlier.
+
+3. Click on the **StudentActivity** solution, then find **Send email on new Request** in the list of solution components and click on it. This will open a PowerAutomate window.
+
+4. On the top menu click on **Edit**, each componant in the Flow will be dispalying a warning triangle click on the top component, to open it.
+
+5. Click on **+Add new connection** link, it should automatically sign you in and create a new connection.
+
+6. Click on the second component to open it, then click on **Common Data Service link** to re-use the same connection created on th first component.
+
+7. Click on the third component to open it, then click on **Common Data Service link** to re-use the same connection created on th first component.
+
+8. Click on the fourth component to open it, on the sign-in page login with an outlook account, this account will be used to send emails to the students, so you may want to setup a new email address for this purpose.
+
+9. In the To field, click on the **X** to remove the sample email address, if you are testing you may want to enter your own email address, if your ready to send notification to the students then click on **Add dynamic content**, from the list click on **Email** under the heading of **Get Contact Record**, this is going to use the email address stored in the student contact.
+
+10. In the **Body** field update the Power Portal link, carefuly updating the link to match the URL copied earlier during the PowerApps Portal Base Deployment, step 4.
+
+11. Click on **Save** button, and wait for save to complete.
+
+12. Click on the back arrow at the top of the screen, then on the top menu click on **Turn on** button.
+
+13. Return to the solution then find, **Convert Non Responded Requests to Tasks** in the list of solution components and click on it. This will open a PowerAutomate window.
+
+14. On the top menu click on **Edit**, the second componant in the Flow will be dispalying a warning triangle, click on the component to open it, then click on **Common Data Service link** to re-use the connection.
+
+15. Click on the third component to expand it, then click on each of the subcomponnets with a warning triangle, for each of these click on **Common Data Service link** to re-use the connection.
+
+16. Click on **Save** button, and wait for save to complete.
+
+17. Click on the back arrow at the top of the screen, then on the top menu click on **Turn on** button.
+
+18. Return to the solution then find, **Inbound Bot Webhook** in the list of solution components and click on it. This will open a PowerAutomate window.
+
+19. On the top menu click on **Edit**, the second componant in the Flow will be dispalying a warning triangle, click on the component to open it, then click on **Common Data Service link** to re-use the connection.
+
+20. Click on the third component to expand it, then click on each of the subcomponnets with a warning triangle, for each of these click on **Common Data Service link** to re-use the connection.
+
+21. Click on **Save** button, and wait for save to complete.
+
+22. Click on the back arrow at the top of the screen, then on the top menu click on **Turn on** button.
+
+23. Return to the solution then find, **Create Request when Low Engagement is Yes** in the list of solution components and click on it. This will open a PowerAutomate window.
+
+24. On the top menu click on **Edit**, then click on the **Continue** button, then click on **Save** button.
+
+25. Now click on the back arrow at the top of the screen, then on the top menu click on **Turn on** button.
+
+26. Return to the solution then find, **Create Task from Request** in the list of solution components and click on it. This will open a PowerAutomate window.
+
+27. On the top menu click on **Edit**, then click on the **Continue** button, then click on **Save** button.
+
+28. Now click on the back arrow at the top of the screen, then on the top menu click on **Turn on** button.
+
+### Configure Power Portal
+
+To configure the Power Portal,
+
+1. Open https://make.powerapps.com
+
+2. From the top menu select the environment that the solution will be deployed into, this is the one we created earlier.
+
+3. Click on **Apps** from the left-hand menu, find **Student Engagment Portal** in the list then click on the **...** to the right of the name, on the popup menu click on **Edit**
+
+4. When the editor window opens, click on **+ New page**, then **Blank** to create a new page.
+
+5. On the Component menu at the right hand side, complete the form as detailed below.
+    * **Name:** Request
+    * **Partial URL:** request
+
+6. Click on the first section component in the page, this is located directly under the header component.
+
+7. From the left-hand menu click on the second item down **Components**, then click on **Form**.
+
+8. On the Component menu at the right hand side, complete the form as detailed below.
+    * **Name:** Request
+    * **Entity:** Request (ans_request)
+    * **Form Layout:** Web Update Form
+    * **Mode:** Edit
+
+9. Click anywhere in the page to save the settings.
+
+10. From the left-hand menu click on the top item **Pages**, find **Request** then click on the **...**, on the popup menu click on **Hide in default menu**
+
+11. Now click on the **Sync Configuration** button at the top right of the page. Once this has complete the Portal is ready to allow users to respond to requests.
+
+12. To apply branding and further customise the Portal, reference the Microsoft documentation here: https://docs.microsoft.com/en-us/powerapps/maker/portals/overview
