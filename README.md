@@ -152,7 +152,7 @@ The solution requires a PowerApps portal, The base PowerApps Portal must be inst
 
 The PowerApp solution
 
-1. Download the Student Engagement PowerApps solution zip file here: https://github.com/ans-group/student-activity-powerapp-solution/archive/master.zip
+1. Download the Student Engagement PowerApps solution zip file here: https://github.com/ans-group/student-activity-powerapp-azure-template/raw/master/powerapp/student-activity-powerapp-solution.zip
 
 2. Open https://make.powerapps.com
 
