@@ -73,7 +73,7 @@
                     "type": "blobServices/containers",
                     "apiVersion": "2018-07-01",
                     "dependsOn": [
-                        "[variables('storageAccountName')]"
+                        "[variables('storageAccountDLName')]"
                     ]
                 },
                 {
@@ -81,7 +81,7 @@
                     "type": "blobServices/containers",
                     "apiVersion": "2018-07-01",
                     "dependsOn": [
-                        "[variables('storageAccountName')]"
+                        "[variables('storageAccountDLName')]"
                     ]
                 }
             ]
