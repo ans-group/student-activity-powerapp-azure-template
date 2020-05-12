@@ -18,7 +18,7 @@ The solution requires you have the following resources and permissions, during t
   * PowerApps User/App licensing
   * Power Portal license
   * Power Portal Page View license
-  * Common Data Service Capacity (Minimum of 2.5Gb)
+  * Common Data Service Capacity (Minimum of 2Gb)
 
 ### App Registration
 
