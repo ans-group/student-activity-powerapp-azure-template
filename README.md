@@ -262,3 +262,16 @@ To configure the Power Portal,
 11. Now click on the **Sync Configuration** button at the top right of the page. Once this has completed the Portal is ready to allow users to respond to requests.
 
 12. To apply branding and further customise the Portal, reference the Microsoft documentation here: https://docs.microsoft.com/en-us/powerapps/maker/portals/overview
+
+### Enabling User Access
+
+To enable users access to the PowerApp Student Activity application, users must be added to PowerApps Security Roles.
+
+To enable users follwo the steps below,
+
+1. Open https://make.powerapps.com
+
+2. From the top menu select the environment that the solution will be deployed into, this is the one we created earlier.
+
+3. Click on **Apps** from the left-hand menu, find **Student Manager** in the list, then click on the **...** to the right of the name, on the popup menu click on **Edit**
+

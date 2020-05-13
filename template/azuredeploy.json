@@ -26,6 +26,34 @@
             "metadata": {
                 "description": "Client Secret for FunctionApp App Registration"
             }
+        },
+        "tagApplication": {
+            "type": "string",
+            "defaultValue": "Student Engagement Application",
+            "metadata": {
+                "description": "Application Tag"
+            }
+        },
+        "tagCriticality": {
+            "type": "string",
+            "defaultValue": "Tier 2",
+            "metadata": {
+                "description": "Criticality Tag"
+            }
+        },
+        "tagEnvironment": {
+            "type": "string",
+            "defaultValue": "Production",
+            "metadata": {
+                "description": "Environment Tag"
+            }
+        },
+        "tagOwner": {
+            "type": "string",
+            "defaultValue": "IT Department",
+            "metadata": {
+                "description": "Owner Tag"
+            }
         }
     },
     "variables": {
@@ -51,6 +79,12 @@
             "kind": "StorageV2",
             "sku": {
                 "name": "[variables('storageAccountType')]"
+            },
+            "tags": {
+                "Application": "[parameters('tagApplication')]",
+                "Criticality": "[parameters('tagCriticality')]",
+                "Owner": "[parameters('tagOwner')]",
+                "Environment": "[parameters('tagEnvironment')]"
             },
             "properties": {
                 "encryption": {
@@ -95,6 +129,12 @@
             "sku": {
                 "name": "[variables('storageAccountType')]"
             },
+            "tags": {
+                "Application": "[parameters('tagApplication')]",
+                "Criticality": "[parameters('tagCriticality')]",
+                "Owner": "[parameters('tagOwner')]",
+                "Environment": "[parameters('tagEnvironment')]"
+            },
             "properties": {
             }    
         },
@@ -106,6 +146,12 @@
             "properties": {
                 "name": "[variables('hostingPlanName')]",
                 "computeMode":"Dynamic"
+            },
+            "tags": {
+                "Application": "[parameters('tagApplication')]",
+                "Criticality": "[parameters('tagCriticality')]",
+                "Owner": "[parameters('tagOwner')]",
+                "Environment": "[parameters('tagEnvironment')]"
             },
             "sku": {
                 "name":"Y1",
@@ -125,6 +171,12 @@
                 "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
                 "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
             ],
+            "tags": {
+                "Application": "[parameters('tagApplication')]",
+                "Criticality": "[parameters('tagCriticality')]",
+                "Owner": "[parameters('tagOwner')]",
+                "Environment": "[parameters('tagEnvironment')]"
+            },
             "properties": {
                 "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
                 "hostingEnvironment": "",
@@ -194,5 +246,11 @@
                 }
             ]         
         }
-    ]
+    ],
+    "outputs": {
+        "AzureDataLakeGen2": {
+            "type": "string",
+            "value": "[concat('https://', variables('storageAccountDLName'), '.dfs.core.windows.net/')]"
+        }
+    }
 }
