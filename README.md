@@ -179,7 +179,7 @@ The PowerApp solution
    - Inbound Bot Webhook
    - Send email on new request
 
-8. Click on the **Close** button, to complete, and **StudentActivity** should now appear in the list of solutions
+8. Click on the **Close** button, to complete, and **ANS_StudentActivity** should now appear in the list of solutions
 
 ### Configure PowerApps Dataflows
 
@@ -269,7 +269,7 @@ To update the Power Automate Flow connections.
 
 2. From the top menu select the environment that the solution will be deployed into, this is the one we created earlier.
 
-3. Click on the **StudentActivity** solution, then find **Send email on new Request** in the list of solution components and click on it. This will open a Power Automate window.
+3. Click on the **ANS_StudentActivity** solution, then find **Send email on new Request** in the list of solution components and click on it. This will open a Power Automate window.
 
 4. On the top menu click on **Edit**, each component in the Flow will be displaying a warning triangle click on the top component, to open it.
 
