@@ -77,7 +77,15 @@ To allow PowerApps Dataflows to import the Teams Activity data, you need to run 
 
 1. In the Azure Portal open the new Azure Function app, you will find this in the list of resources that have been provisioned by the template.
 
-2. In the left-hand menu expand the **Functions** and click on **collectActivityData**, click on the **Run** button. A log window will appear at the bottom of the screen, look for a Succeeded message at the end of the log. If you see red text wait 5 minutes and try again, the function may still be importing modules. If the red text continues check the error messages, there may be a problem with the App Registration you created earlier.
+2. In the left-hand menu expand the **Functions** and click on **collectActivityData**.
+
+3. Depending on the version of the function managment pane.
+
+    a. If using the new function mangement experience: Click on **Code + Test** from the left-hand menu, then click on **Test**, then click the **Run** button.
+
+    b. If using the clasic function mangement experience: Click on the **Run** button.
+
+4. Wait 5 minute to allow the function to run and export the required data.
 
 ### Azure AD Data Lake Role
 
