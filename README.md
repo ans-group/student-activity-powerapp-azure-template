@@ -45,7 +45,7 @@ To create the App Registration,
    | Graph Permission | Permission Type |
    | ---------------- | --------------- |
    | Reports.Read.All | Application     |
-   | Users.Read.All   | Application     |
+   | User.Read.All    | Application     |
 
 10. Click on the **Grant admin consent for Default Directory** button.
 
@@ -69,7 +69,7 @@ The Azure template will deploy an Azure Function App and an Azure Data Lake Gen2
 
 4. Click on the **Purchase** button, then wait 3-4 minutes for the deployment to complete.
 
-5. Once complete click on **Outputs** on the left-hand menu, and record the URL value for **azureDataLkaeGen2**, this is required when configuring the PowerApps Dataflow to import the data into the Common Data Service later.
+5. Once complete click on **Outputs** on the left-hand menu, and record the URL value for **azureDataLakeGen2**, this is required when configuring the PowerApps Dataflow to import the data into the Common Data Service later.
 
 ### Generate Initial Export
 
