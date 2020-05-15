@@ -93,11 +93,11 @@ To create the Azure AD User,
 
 7. Click **Create**
 
-8. Find the user in the list of user and click on the Name.
+8. Find the user in the list of users and click on the Name.
 
 9. On the left-hand menu click on **Licenses**, then **+ Assignments**
 
-10. Select a **Power Apps** license and an **Exchange Online** license, then click **Save** buttton.
+10. Select a **Power Apps** license and an **Exchange Online** license, then click **Save** button.
 
 ### Deploy Azure Template
 
