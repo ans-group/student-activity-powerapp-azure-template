@@ -49,6 +49,56 @@ To create the App Registration,
 
 10. Click on the **Grant admin consent for Default Directory** button.
 
+### Azure AD Security Group
+
+An Azure AD Security Group is required to limit the users that have access to the Power Platform environment. To create the Azure AD Group, follow the steps below.
+
+To create the Azure AD Security Group,
+
+1. logon to the Azure Portal with an account that has **Global Administrator** permissions: https://portal.azure.com
+
+2. Open the **Azure Active Directory** blade.
+
+3. Click on **Groups**, then click on the **+ New group** button.
+
+4. Set **Group type** to **Security**
+
+5. Complete the **Group name** and **Group description**
+
+6. Add at least your Admin user as a Member of the Group.
+
+7. Click **Create**
+
+### Azure AD User
+
+An Azure AD User is required by Power Automate. The user allows Power Automate access to the Common Data Service and enables it to send emails to the students.
+
+To create the Azure AD User,
+
+1. logon to the Azure Portal with an account that has **Global Administrator** permissions: https://portal.azure.com
+
+2. Open the **Azure Active Directory** blade.
+
+3. Click on **Users**, then click on the **+ New user** button.
+
+4. Complete the below **Identity** fields,
+   - **Username**
+   - **Name**
+   - **First name**
+   - **Last name**
+
+5. Under **Groups and roles** add the user to the Group created in the previous section.
+
+6. Set the **Usage location**
+
+7. Click **Create**
+
+8. Find the user in the list of user and click on the Name.
+
+9. On the left-hand menu click on **Licenses**, then **+ Assignments**
+
+10. Select a **Power Apps** license and an **Exchange Online** license, then click **Save** buttton.
+
 ### Deploy Azure Template
 
 The Azure template will deploy an Azure Function App and an Azure Data Lake Gen2 storage account.
@@ -107,29 +157,9 @@ To assign the role,
 
 7. Set **Assign access to** to **Azure AD user, group or service principle**
 
-8. Select the user account you are going to use to connect the Power Platform Dataflow to the Azure Data Lake.
+8. Select the user account you created earlier, in the **Azure AD User** section of this document.
 
 9. Click **Save** button.
-
-### Azure AD Security Group
-
-An Azure AD Security Group is required to limit the users that have access to the Power Platform environment. To create the Azure AD Group, follow the steps below.
-
-To create the Azure AD Security Group,
-
-1. logon to the Azure Portal with an account that has **Global Administrator** permissions: https://portal.azure.com
-
-2. Open the **Azure Active Directory** blade.
-
-3. Click on **Groups**, then click on the **+ New group** button.
-
-4. Set **Group type** to **Security**
-
-5. Complete the **Group name** and **Group description**
-
-6. Add at least your Admin user as a Member of the Group.
-
-7. Click **Create**
 
 ### Create a PowerApps Environment
 
@@ -268,6 +298,26 @@ PowerApps Dataflows are used to import the Students and Activity from the Azure 
 28. Select **Refresh automatically** radio button.
 
 29. Set **Refresh every** to 1 Days and set the time to 08:00, then click **Create** button.
+
+### Configure Power Automate Flow User permissions
+
+To Power Automate flow user access to the Common Data Service, the user must be added to PowerApps Security Roles.
+
+To enable users, follow the steps below,
+
+1. Open https://make.powerapps.com
+
+2. From the top menu select the environment that the solution will be deployed into, this is the one we created earlier.
+
+3. Click on the **Cog** icon to the right of the selected environment, on the menu click on **Advanced settings**.
+
+4. Click on **Settings** in the top menu, and on the dropdown menu, click on **Security**.
+
+5. Click on **Users**, then find the Power Automate user you created earlier, in the **Azure AD User** section of this document.
+
+6. Click on the Users Full Name, then on the top menu click on **Manage Roles**.
+
+7. Check the **ANS StudentActivity Common Data Service** role, then click on **OK** button.
 
 ### Update Power Automate Flow connections
 
