@@ -229,11 +229,11 @@ PowerApps Dataflows are used to import the Students and Activity from the Azure 
 
 3. Click on the left-hand menu click on **Data**, then click on **Dataflows**.
 
-4. Click on the **...** to the right of the **Import Students DataLake Gen2** Dataflow, then click **Edit** on the dropdown menu.
+4. Click on the **...** to the right of the **Import Teams Data DataLake Gen2** Dataflow, then click **Edit** on the dropdown menu.
 
 5. On the left-hand menu under **Queries**, click on **AzureDataLakeGen2** then in change the **Current Value** to match the value recorded at Step 5 of deploying the Azure Template.
 
-6. Click on **StudentData** in the left-hand menu, then click on **Configure connection** button at the right of the yellow box.
+6. Click on **TeamsActivityData** in the left-hand menu, then click on **Configure connection** button at the right of the yellow box.
 
 7. Enter **AzureDataLakeGen2** as the connection name, then click **Sign in**
 
@@ -243,43 +243,9 @@ PowerApps Dataflows are used to import the Students and Activity from the Azure 
 
 10. Under **Load settings**, click on **Load to existing entity** radio button, from the entity dropdown select **Contact**
 
-11. Check the **Delete rows that no longer exist in the query output** if you want deleted records to be removed.
+11. Tick the **Delete rows that no longer exist in the query output**.
 
 12. Under **Field mapping** configure the mappings listed in the below table using the dropdown menus.
-
-   | Source Column         | Destination Field |
-   | --------------------- | ----------------- |
-   | Column1.usageLocation | Address1_country  |
-   | Column1.mail          | EmailAddress1     |
-   | Column1.givenName     | FirstName         |
-   | Column1.displayName   | FullName          |
-   | Column1.surname       | LastName          |
-
-13. Under **Queries** on the left, click on **AzureDataLakeGen2**.
-
-14. Under **Load settings**, click on **Do not load** radio button, then click on **Next** button.
-
-15. Select **Refresh automatically** radio button.
-
-16. Set **Refresh every** to 1 Days and set the time to 00:00, then click **Create** button.
-
-17. Click on the **...** to the right of the **Import Teams Data DataLake Gen2** Dataflow, then click **Edit** on the dropdown menu.
-
-18. On the left-hand menu under **Queries**, click on **AzureDataLakeGen2** then in change the **Current Value** to match the value recorded at Step 5 of deploying the Azure Template.
-
-19. Click on **TeamsActivityData** in the left-hand menu, then click on **Configure connection** button at the right of the yellow box.
-
-20. Enter **AzureDataLakeGen2** as the connection name, then click **Sign in**
-
-21. Enter the credentials of an account that has at least the **Storage Blob Data Reader** role assigned on the Azure Data Lake Storage account.
-
-22. Click on the **Connect** button, you should now see a table containing your Student data, if your data is there click on the **Next** button.
-
-23. Under **Load settings**, click on **Load to existing entity** radio button, from the entity dropdown select **Contact**
-
-24. Leave the **Delete rows that no longer exist in the query output** unchecked.
-
-25. Under **Field mapping** configure the mappings listed in the below table using the dropdown menus.
 
    | Source Column                   | Destination Field           |
    | ------------------------------- | --------------------------- |
@@ -289,15 +255,19 @@ PowerApps Dataflows are used to import the Students and Activity from the Azure 
    | Column1.privateChatMessageCount | ans_PrivateChatMessageCount |
    | Column1.reportRefreshDate       | ans_reportRefreshDate       |
    | Column1.teamChatMessageCount    | ans_teamChatMessageCount    |
+   | Column1.usageLocation           | Address1_country            |
    | Column1.mail                    | EmailAddress1               |
+   | Column1.givenName               | FirstName                   |
+   | Column1.displayName             | FullName                    |
+   | Column1.surname                 | LastName                    |
 
-26. Under **Queries** on the left, click on **AzureDataLakeGen2**.
+13. Under **Queries** on the left, click on **AzureDataLakeGen2**.
 
-27. Under **Load settings**, click on **Do not load** radio button, then click on **Next** button.
+14. Under **Load settings**, click on **Do not load** radio button, then click on **Next** button.
 
-28. Select **Refresh automatically** radio button.
+15. Select **Refresh automatically** radio button.
 
-29. Set **Refresh every** to 1 Days and set the time to 08:00, then click **Create** button.
+16. Set **Refresh every** to 1 Days and set the time to 08:00, then click **Create** button.
 
 ### Configure Power Automate Flow User permissions
 
