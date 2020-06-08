@@ -27,6 +27,14 @@
                 "description": "Client Secret for FunctionApp App Registration"
             }
         },
+        "teamsAggregatedPeriod": {
+            "type": "string",
+            "defaultValue": "7",
+            "allowedValues": [ "7","30","90","180" ],
+            "metadata": {
+                "description": "Teams Aggregated Data Period 7, 30, 90, 180"
+            }
+        },
         "tagApplication": {
             "type": "string",
             "defaultValue": "Student Engagement Application",
@@ -226,6 +234,10 @@
                         {
                             "name": "CLIENT_SECRET",
                             "value": "[parameters('clientSecret')]"
+                        },
+                        {
+                            "name": "TEAMS_AGGREGATED_PERIOD",
+                            "value": "[parameters('teamsAggregatedPeriod')]"
                         }
                     ]
                 }
